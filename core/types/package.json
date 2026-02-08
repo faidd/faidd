@@ -1,0 +1,6 @@
+{
+  "name": "@faidd/types",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Generated TypeScript types for FAIDD"
+}

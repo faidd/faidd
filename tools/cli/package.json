@@ -1,0 +1,21 @@
+{
+  "name": "@faidd/cli",
+  "version": "0.1.0",
+  "private": true,
+  "bin": {
+    "faidd": "./dist/index.js"
+  },
+  "dependencies": {
+    "@faidd/logic": "workspace:*",
+    "@faidd/types": "workspace:*",
+    "chalk": "^4.1.0",
+    "commander": "^11.1.0",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^9.2.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.0.0"
+  }
+}

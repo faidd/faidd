@@ -1,0 +1,10 @@
+{
+  "name": "@faidd/logic",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Core business logic for FAIDD",
+  "dependencies": {
+    "@faidd/types": "workspace:*",
+    "zod": "^3.24.0"
+  }
+}
