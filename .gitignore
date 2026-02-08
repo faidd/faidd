@@ -102,6 +102,8 @@ next-env.d.ts
 !SECURITY.md
 !LICENSE
 !PULL_REQUEST_TEMPLATE.md
+!AGENTS.md
+!CLAUDE.md
 
 # additionnals
 .protocols/
