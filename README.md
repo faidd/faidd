@@ -57,8 +57,9 @@ We welcome contributions from the community. See the list of people who have alr
 </a>
 
 <br>
+<br>
 
-Support us by starring the repo!
+### Support us by starring the repo!
 
 <a href="https://star-history.com/#faidd/faidd&Date">
  <picture>
