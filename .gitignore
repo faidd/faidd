@@ -106,6 +106,8 @@ next-env.d.ts
 !CLAUDE.md
 !.agents/
 !.agents/**
+!versions/
+!versions/**
 
 # additionnals
 .protocols/

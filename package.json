@@ -2,7 +2,7 @@
   "name": "faidd",
   "version": "0.1.0",
   "private": true,
-  "description": "FAIDD - Sovereign AI Security System",
+  "description": "FAIDD - Framework for Ai Driven Development",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
