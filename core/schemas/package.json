@@ -1,8 +1,14 @@
 {
   "name": "@faidd/schemas",
-  "version": "0.1.0",
-  "private": true,
-  "description": "Source of truth for FAIDD data structures",
+  "version": "0.1.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "devDependencies": {
     "json-schema-to-typescript": "^15.0.0"
   }

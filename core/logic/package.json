@@ -1,8 +1,14 @@
 {
   "name": "@faidd/logic",
-  "version": "0.1.0",
-  "private": true,
-  "description": "Core business logic for FAIDD",
+  "version": "0.1.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "dependencies": {
     "@faidd/types": "workspace:*",
     "zod": "^3.24.0"
