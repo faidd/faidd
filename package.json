@@ -2,6 +2,8 @@
   "name": "faidd",
   "version": "0.1.1",
   "private": true,
+  "packageManager": "pnpm@10.26.1",
+  "type": "module",
   "description": "FAIDD - Framework for Ai Driven Development",
   "author": "FAIDD Team",
   "license": "Apache-2.0",

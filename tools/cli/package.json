@@ -1,9 +1,14 @@
 {
   "name": "faidd",
   "version": "0.1.1",
+  "type": "module",
   "private": false,
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
   },
   "files": [
     "dist",

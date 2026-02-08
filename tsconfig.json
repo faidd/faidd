@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ESNext"],
+    "strict": true,
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@faidd/logic": ["core/logic/src/index.ts"],
+      "@faidd/types": ["core/types/src/index.ts"],
+      "@faidd/schemas": ["core/schemas/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
