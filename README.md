@@ -85,6 +85,25 @@ We welcome contributions from the community. See the list of people who have alr
 
 ---
 
+## 🧠 AI Intelligence Layer
+
+FAIDD is designed to be self-governing. The following resources define the behavioral logic and operational "mindset" of AI agents working within this repository:
+
+*   **[Agent Directives](./AGENTS.md)**: The Prime Directive and Class S Violations.
+*   **[Claude Alignment](./CLAUDE.md)**: Deep technical context for Anthropic/Cursor agents.
+*   **[Intelligence Tools](./.agents)**: Specialized sub-agent skills and workflows.
+
+---
+
+## 📜 Release History
+
+Track the evolution of the framework through our versioned logs:
+
+*   **[Latest Release](./versions)**: view historical milestones and codenames.
+    *   [v0.1.0 - Sovereign Foundation](./versions/v0.1.0.md)
+
+---
+
 ## License
 
 FAIDD is released under the [Apache 2.0 License](./LICENSE).
