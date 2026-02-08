@@ -1,17 +1,20 @@
-# 🧠 FAIDD Core Packages
+# FAIDD Core Architecture
 
-This directory contains the foundational logic and data definitions of the FAIDD system.
+The `core/` directory contains the foundational packages that define the logic and data contracts of the FAIDD system. This layer is designed to be language-agnostic in its definitions while providing optimized implementations for each target environment.
 
-## 📦 Packages
+## Principal Components
 
-### 📜 [`schemas/`](./schemas)
-**Source of Truth**. Contains JSON Schema definitions for rules, ledger entries, and mission manifests. This is the only place where data structures should be modified.
+### [Schemas](./schemas)
+The source of truth for the entire ecosystem. It utilizes JSON Schema to define strict contracts for permissions, audit logs, and mission parameters.
 
-### 🧬 [`types/`](./types)
-**Bridging the Gap**. This package contains auto-generated TypeScript interfaces and Rust structs. Do not edit manually; use the build script to sync from schemas.
+### [Types](./types)
+This package holds the generated type definitions. By deriving types directly from schemas, FAIDD ensures that the TypeScript orchestration layer and the Rust monitoring layer remain perfectly synchronized.
 
-### ⚙️ [`logic/`](./logic)
-**The Rules Engine**. Implementation of the verification logic, permission checking, and the integrity-chain hashing for the ledger.
+### [Logic](./logic)
+The implementation of the system's core algorithms, including:
+*   **Rules Evaluation**: High-performance verification of filesystem events.
+*   **Cryptographic Ledger**: Logic for integrity chaining and hash verification.
+*   **Protocol Enforcement**: Implementation of the B-MAD security protocols.
 
-### 🤖 [`agents/`](./agents)
-**Agent Mindsets**. Collection of Markdown files defining specific prompts, constraints, and instructions for AI agents operating within FAIDD.
+### [Agents](./agents)
+A collection of standardized agent mindsets and specialized prompts that define the behavioral constraints and objectives for AI agents within the system.

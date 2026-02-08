@@ -1,14 +1,14 @@
-# 🛠️ FAIDD Tools
+# FAIDD Operational Tools
 
-Executables and runtime interfaces for interacting with the FAIDD system.
+The `tools/` directory contains the executable binaries and user-facing interfaces that comprise the FAIDD runtime environment.
 
-## 🚀 Components
+## Toolset Overview
 
-### 💻 [`cli/`](./cli)
-**User Entrypoint**. Built with Node.js/TypeScript. It provides the `faidd` command for initializing projects, starting the system, and querying the audit ledger.
+### [CLI Interface](./cli)
+The primary entry point for developers. Built with Node.js and TypeScript, it orchestrates environment initialization, daemon management, and audit inspection.
 
-### 🛡️ [`daemon/`](./daemon)
-**The Guardian**. A high-performance Rust process that watches file system events, enforces rules manifests, and manages the IPC (Inter-Process Communication) channel.
+### [Security Daemon](./daemon)
+A high-performance background process written in Rust. It serves as the system's "iron gate," monitoring filesystem activity in real-time and enforcing the active rules manifest.
 
-### 📊 [`dashboard/`](./dashboard)
-**Mission Control**. A Rust-based TUI (Terminal User Interface) for real-time monitoring of agent activity, rule violations, and system health.
+### [Monitoring Dashboard](./dashboard)
+A specialized terminal user interface (TUI) built with Rust. It provides real-time telemetry, violation reporting, and system health status for the active environment.

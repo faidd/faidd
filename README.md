@@ -1,50 +1,66 @@
-# ⚔️ FAIDD - Sovereign AI Security System
+# FAIDD: Framework for AI-Driven Development
 
-FAIDD is a sovereign security layer designed to govern and audit AI agent interactions within a development environment. It enforces project-specific rules, maintains an immutable cryptographic ledger of operations, and provides real-time monitoring through a specialized Rust daemon.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![GitHub stars](https://img.shields.io/github/stars/bmad-dev/faidd?style=social)](https://github.com/bmad-dev/faidd/stargazers)
+[![GitHub contributors](https://img.shields.io/github/contributors/bmad-dev/faidd)](https://github.com/bmad-dev/faidd/graphs/contributors)
 
-## 🏗️ Project Architecture
-
-FAIDD is built as a **PNPM Monorepo**, separating core logic from executable tools to ensure modularity and cross-language type safety (Rust/TypeScript).
-
-### 📂 Directory Overview
-
-| Directory | Type | Responsibility |
-| :--- | :--- | :--- |
-| [`core/`](./core) | **Logique** | The "Brain" - Shared schemas, business logic, and generated types. |
-| [`tools/`](./tools) | **Exécutables** | The "Muscles" - CLI, Daemon, and Dashboard binaries. |
-| [`_faidd/`](./_faidd) | **Système** | The "Black Box" - Local mission control, rules manifests, and audit ledger. |
+FAIDD (Fully Automated Integrity & Distribution Daemon) is a sovereign security framework designed to govern, audit, and secure the interactions of AI agents within high-integrity development environments. It establishes a robust barrier between the host system and autonomous agents by enforcing schema-first permissions and maintaining an immutable audit trail.
 
 ---
 
-## 🧠 Core Packages (`core/`)
+## Technical Architecture
 
-- **`core/schemas`**: Source of truth (JSON Schema) for all system entities.
-- **`core/types`**: Auto-generated types (TS/Rust) derived from schemas.
-- **`core/logic`**: Implementation of the Rules Engine and cryptographic hashing.
-- **`core/agents`**: Specialized markdown-based mindsets for AI agents.
+FAIDD follows a modular monorepo architecture, leveraging the safety of Rust for system monitoring and the flexibility of TypeScript for orchestration mapping.
 
-## 🛠️ Executable Tools (`tools/`)
+### Core Ecosystem (`core/`)
+The foundational logic layer, ensuring cross-language type safety and rule evaluation.
+*   **[Schemas](./core/schemas)**: The source of truth for the system contract.
+*   **[Types](./core/types)**: Synchronized type definitions for Rust and TypeScript.
+*   **[Logic](./core/logic)**: The engine responsible for verification and integrity chaining.
 
-- **`tools/cli`**: Node.js interface for project initialization and control.
-- **`tools/daemon`**: Rust-based background process for file monitoring and enforcement.
-- **`tools/dashboard`**: Rust TUI (Terminal User Interface) for real-time monitoring.
+### Runtime Tools (`tools/`)
+The operational interface of the framework.
+*   **[CLI Interface](./tools/cli)**: Project management and agent bootstrapping.
+*   **[Guard Daemon](./tools/daemon)**: Rust-based filesystem watcher and rule enforcer.
+*   **[Dashboard](./tools/dashboard)**: Real-time telemetry and violation monitoring.
 
-## 🔒 System Storage (`_faidd/`)
-
-- **`_faidd/bin`**: Local storage for the compiled Rust daemon.
-- **`_faidd/ledger`**: Immutable append-only log of all agent actions.
-- **`_faidd/rules`**: Serialized manifests consumed by the Rules Engine.
+### System Registry (`_faidd/`)
+The local runtime state, managed exclusively by the framework to maintain environment sovereignty.
 
 ---
 
-## ⚙️ Development
+## Strategic Significance
 
-This project uses **Turborepo** for orchestration.
+FAIDD addresses the critical challenge of **AI Agency Security**. In an era of autonomous coding agents, FAIDD provides the necessary guardrails to ensure that agents remain within their designated scope, preventing unauthorized data exfiltration or system pollution.
 
-```bash
-pnpm install
-pnpm run build
-```
+---
 
-> [!IMPORTANT]
-> **Sovereignty Rule**: Never modify files in `_faidd/` manually. These are governed by the system daemon.
+## Community and Contributions
+
+### Contributors
+We welcome contributions from the community. See the list of people who have already contributed:
+
+<a href="https://github.com/bmad-dev/faidd/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=bmad-dev/faidd" />
+</a>
+
+### Activity
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/bmad-dev/faidd)
+![GitHub star history](https://star-history.com/#bmad-dev/faidd&Date)
+
+---
+
+## Governance & Compliance
+
+*   [Contributing Guidelines](./CONTRIBUTING.md)
+*   [Security Policy](./SECURITY.md)
+*   [AI Agent Interaction Rules](./AGENTS.md)
+*   [Claude/Cursor Specific Guidance](./CLAUDE.md)
+*   [Code of Conduct](./CODE_OF_CONDUCT.md)
+
+---
+
+## License
+
+FAIDD is released under the [MIT License](./LICENSE).

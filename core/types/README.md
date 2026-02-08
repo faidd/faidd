@@ -1,10 +1,16 @@
 # @faidd/types
 
-This package contains the **Generated Types** for the FAIDD monorepo.
+This package provides the generated type definitions required for cross-language synchronization within the FAIDD monorepo.
 
-## ⚠️ DO NOT EDIT MANUALLY
-The files in this package are automatically generated from the JSON schemas in `core/schemas`. Manual changes will be overwritten during the build process.
+## Automated Synchronization
 
-## 🔄 Generation Process
-- **TypeScript**: Generated using `json-schema-to-typescript`.
-- **Rust**: (Future) Generated using `serde` compatible code generators.
+To ensure absolute consistency between the TypeScript and Rust layers, type definitions are automatically derived from the JSON Schemas located in `core/schemas`.
+
+### Warning: Manual Modification Prohibited
+
+Files within this package are artifacts of the build process. Manual modifications will be overwritten and should never be proposed in pull requests. Changes to the system types must be implemented by modifying the source schemas.
+
+### Generation Stack
+
+*   **TypeScript**: Derived using `json-schema-to-typescript`.
+*   **Rust**: Target structs utilizing `serde` for seamless serialization.

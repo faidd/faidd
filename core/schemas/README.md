@@ -1,13 +1,17 @@
 # @faidd/schemas
 
-This package serves as the **Single Source of Truth** for the entire FAIDD ecosystem.
+This package serves as the centralized source of truth for the FAIDD framework's data contracts.
 
-## 🎯 Purpose
-By defining data structures in JSON Schema, we ensure that:
-1. **Consistency**: TypeScript and Rust always use the same data definitions.
-2. **Validation**: Runtime data can be validated against the schema.
-3. **Evolution**: Changes to the system contract are tracked and synchronized.
+## Technical Scope
 
-## 📂 Contents
-- `rules.json`: Schema for permission rules.
-- `ledger.json`: Schema for audit log entries.
+By utilizing JSON Schema, this package defines the structure and validation rules for all critical system entities. This approach guarantees that both the TypeScript orchestration and the Rust-based system monitoring remain aligned on the same data protocols.
+
+### Key Definitions
+
+*   **Rules Manifest**: Defines the permission sets and file system constraints.
+*   **Ledger Entries**: Specifies the structure of the cryptographic audit trail.
+*   **Mission Protocol**: Defines the objectives and constraints for active AI agent missions.
+
+## Usage
+
+Any architectural change affecting the system's data model must originate within this package. Modifying these schemas triggers the synchronization process across the monorepo.
