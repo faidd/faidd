@@ -104,6 +104,8 @@ next-env.d.ts
 !PULL_REQUEST_TEMPLATE.md
 !AGENTS.md
 !CLAUDE.md
+!.agents/
+!.agents/**
 
 # additionnals
 .protocols/
