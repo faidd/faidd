@@ -13,7 +13,7 @@ Thank you for your interest in contributing to FAIDD. As a security framework fo
 ### Initial Setup
 ```bash
 # Clone the repository
-git clone https://github.com/bmad-dev/faidd.git
+git clone https://github.com/faidd/faidd.git
 cd faidd
 
 # Install dependencies

@@ -10,5 +10,5 @@ The primary entry point for developers. Built with Node.js and TypeScript, it or
 ### [Security Daemon](./daemon)
 A high-performance background process written in Rust. It serves as the system's "iron gate," monitoring filesystem activity in real-time and enforcing the active rules manifest.
 
-### [Monitoring Dashboard](./dashboard)
-A specialized terminal user interface (TUI) built with Rust. It provides real-time telemetry, violation reporting, and system health status for the active environment.
+### [CUI Console](./cui)
+**CLI User Interface**. A specialized terminal dashboard built with Rust. It provides real-time telemetry, violation reporting, and system health status for the active environment.
