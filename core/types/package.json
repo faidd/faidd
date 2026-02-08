@@ -1,6 +1,12 @@
 {
   "name": "@faidd/types",
-  "version": "0.1.0",
-  "private": true,
-  "description": "Generated TypeScript types for FAIDD"
+  "version": "0.1.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ]
 }

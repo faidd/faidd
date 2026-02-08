@@ -1,7 +1,14 @@
 {
-  "name": "@faidd/cli",
-  "version": "0.1.0",
-  "private": true,
+  "name": "faidd",
+  "version": "0.1.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "bin": {
     "faidd": "./dist/index.js"
   },
