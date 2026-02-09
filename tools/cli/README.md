@@ -1,5 +1,7 @@
 # FAIDD: Framework for AI-Driven Development
 
+[![NPM Downloads](https://img.shields.io/npm/dw/faidd?style=flat-square&logo=npm&color=cb3837)](https://www.npmjs.com/package/faidd)
+
 > **The primary Command Line Interface and orchestration engine for the FAIDD framework.**
 
 FAIDD is a sovereign security framework designed to govern, audit, and secure the interactions of AI agents within high-integrity development environments. It establishes a robust barrier between the host system and autonomous agents by enforcing schema-first permissions and maintaining an immutable audit trail.

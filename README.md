@@ -4,6 +4,8 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![GitHub stars](https://img.shields.io/github/stars/faidd/faidd?style=social)](https://github.com/faidd/faidd/stargazers)
 [![GitHub contributors](https://img.shields.io/github/contributors/faidd/faidd)](https://github.com/faidd/faidd/graphs/contributors)
+[![NPM Downloads](https://img.shields.io/npm/dw/faidd?style=flat-square&logo=npm&color=cb3837)](https://www.npmjs.com/package/faidd)
+[![Logic Downloads](https://img.shields.io/npm/dw/@faidd/logic?label=logic%20downloads)](https://www.npmjs.com/package/@faidd/logic)
 
 FAIDD is a sovereign security framework designed to govern, audit, and secure the interactions of AI agents within high-integrity development environments. It establishes a robust barrier between the host system and autonomous agents by enforcing schema-first permissions and maintaining an immutable audit trail.
 
