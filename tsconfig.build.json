@@ -1,0 +1,9 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./core/types" },
+    { "path": "./core/logic" },
+    { "path": "./core/schemas" },
+    { "path": "./tools/cli" }
+  ]
+}

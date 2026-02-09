@@ -1,14 +1,44 @@
 {
   "name": "faidd",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "type": "module",
   "private": false,
+  "description": "FAIDD Official CLI - The orchestration engine for AI-Driven Development",
+  "author": "FAIDD Team",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/faidd/faidd#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faidd/faidd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/faidd/faidd/issues"
+  },
+  "keywords": [
+    "faidd",
+    "cli",
+    "ai",
+    "agent",
+    "automation",
+    "bm-ad",
+    "framework"
+  ],
   "publishConfig": {
     "access": "public"
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch"
+    "build": "tsc -b",
+    "dev": "tsc -b --watch"
   },
   "files": [
     "dist",
