@@ -4,6 +4,8 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![GitHub stars](https://img.shields.io/github/stars/faidd/faidd?style=social)](https://github.com/faidd/faidd/stargazers)
 [![GitHub contributors](https://img.shields.io/github/contributors/faidd/faidd)](https://github.com/faidd/faidd/graphs/contributors)
+[![NPM Downloads](https://img.shields.io/npm/dw/faidd?style=flat-square&logo=npm&color=cb3837)](https://www.npmjs.com/package/faidd)
+[![Logic Downloads](https://img.shields.io/npm/dw/@faidd/logic?label=logic%20downloads)](https://www.npmjs.com/package/@faidd/logic)
 
 FAIDD is a sovereign security framework designed to govern, audit, and secure the interactions of AI agents within high-integrity development environments. It establishes a robust barrier between the host system and autonomous agents by enforcing schema-first permissions and maintaining an immutable audit trail.
 
@@ -52,24 +54,14 @@ FAIDD addresses the critical challenge of **AI Agency Security**. In an era of a
 
 We welcome contributions from the community. See the list of people who have already contributed:
 
-<a href="https://github.com/faidd/faidd/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=faidd/faidd" />
-</a>
+[![Contributors](https://contrib.rocks/image?repo=faidd/faidd)](https://github.com/faidd/faidd/graphs/contributors)
 
-<br>
-<br>
+### Support us by starring the repo
 
-### Support us by starring the repo!
-
-<a href="https://star-history.com/#faidd/faidd&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=faidd/faidd&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=faidd/faidd&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=faidd/faidd&type=Date" />
- </picture>
-</a>
+[![Star History Chart](https://api.star-history.com/svg?repos=faidd/faidd&type=Date)](https://star-history.com/#faidd/faidd&Date)
 
 ### Global Metrics
+
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/faidd/faidd)
 ![GitHub star history](https://star-history.com/#faidd/faidd&Date)
 
@@ -89,9 +81,24 @@ We welcome contributions from the community. See the list of people who have alr
 
 FAIDD is designed to be self-governing. The following resources define the behavioral logic and operational "mindset" of AI agents working within this repository:
 
-*   **[Agent Directives](./AGENTS.md)**: The Prime Directive and Class S Violations.
-*   **[Claude Alignment](./CLAUDE.md)**: Deep technical context for Anthropic/Cursor agents.
-*   **[Intelligence Tools](./.agents)**: Specialized sub-agent skills and workflows.
+* **[Agent Directives](./AGENTS.md)**: The Prime Directive and Class S Violations.
+* **[Claude Alignment](./CLAUDE.md)**: Deep technical context for Anthropic/Cursor agents.
+* **[Intelligence Tools](./.agents)**: Specialized sub-agent skills and workflows.
+
+---
+
+## 🗺️ Roadmap & Milestones
+
+FAIDD follows a rigorous progression towards the `v1.0.0` (Sovereign Singularity).
+
+| Version | Milestone | Focus |
+| :--- | :--- | :--- |
+| **0.1.x** | **Sovereign Foundation** | Infrastructure, Monorepo & Documentation. |
+| **0.2.x** | **Perception Layer** | Majestic CLI, Onboarding & TUI Dashboard. |
+| **0.3.x** | **Nerve System** | Rust Daemon, IPC & Integrity Monitoring. |
+| **0.4.x** | **Governance Vault** | Rules Engine, Right Matrix & Zod Schemas. |
+| **0.5.x** | **Immutable Ledger** | Mission Register & Cryptographic Auditing. |
+| **1.0.0** | **Sovereign Singularity** | Full Integration & Production Readiness. |
 
 ---
 
@@ -99,8 +106,10 @@ FAIDD is designed to be self-governing. The following resources define the behav
 
 Track the evolution of the framework through our versioned logs:
 
-*   **[Latest Release](./versions)**: view historical milestones and codenames.
-    *   [v0.1.0 - Sovereign Foundation](./versions/v0.1.0.md)
+* **[Latest Release](./versions)**: view historical milestones and codenames.
+  * [v0.1.4 - Documentation Scaffolding & Versioning Protocol](./versions/v0.1.4.md)
+  * [v0.1.3 - Sovereign Perception Sync](./versions/v0.1.3.md)
+  * [v0.1.0 - Sovereign Foundation](./versions/v0.1.0.md)
 
 ---
 
