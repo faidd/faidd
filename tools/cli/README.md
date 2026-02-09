@@ -1,43 +1,48 @@
-# FAIDD: Framework for AI-Driven Development
+# FAIDD Command Line Interface (CLI)
 
-[![NPM Downloads](https://img.shields.io/npm/dw/faidd?style=flat-square&logo=npm&color=cb3837)](https://www.npmjs.com/package/faidd)
+The FAIDD CLI is the central orchestration engine for the Sovereign Security Framework. It provides the necessary tools to initialize, manage, and audit the development perimeter.
 
-> **The primary Command Line Interface and orchestration engine for the FAIDD framework.**
+## Core Objective
 
-FAIDD is a sovereign security framework designed to govern, audit, and secure the interactions of AI agents within high-integrity development environments. It establishes a robust barrier between the host system and autonomous agents by enforcing schema-first permissions and maintaining an immutable audit trail.
+FAIDD addresses the critical challenge of AI Agency Security. By establishing a robust barrier between autonomous agents and the host system, the CLI ensures that agent interactions remain within a defined governance scope through schema-first permissions and immutable audit trails.
 
----
+## Primary Capabilities
 
-## 🚀 Quick Start (CLI)
+- **Perimeter Initialization**: Automated setup of the Sovereign workspace.
+- **Onboarding Journey**: Interactive configuration of developer identity and technical context.
+- **Rule Enforcement**: Real-time evaluation of agent actions against governance laws.
+- **Audit Logging**: Generation of cryptographic trails for post-action verification.
 
-To initialize a new FAIDD-secured environment:
+## Architecture
+
+The CLI follows a modular, layer-based architecture designed for high maintainability and security:
+
+- **UI Layer (`src/ui/`)**: Pure terminal rendering (ASCII branding, themes, table formatting).
+- **Action Layer (`src/actions/`)**: Coordination of complex business flows and internal services.
+- **Service Layer (`src/services/`)**: Stateless modules for configuration management and rule processing.
+- **Onboarding Layer (`src/onboarding/`)**: Interactive setup rituals for new environments.
+- **Types & Schemas (`src/types/`)**: Shared definitions and runtime validation rules.
+
+## Installation and Execution
+
+To establish Sovereign guardrails in a new project:
 
 ```bash
 npx faidd init
 ```
 
-To start the monitoring daemon:
+For status reporting and perimeter auditing:
 
 ```bash
-npx faidd start
+npx faidd status
 ```
 
----
+## Security Model
 
-## 🎯 Strategic Significance
-
-FAIDD addresses the critical challenge of **AI Agency Security**. In an era of autonomous coding agents, FAIDD provides the necessary guardrails to ensure that agents remain within their designated scope, preventing unauthorized data exfiltration or system pollution.
-
-## 🧱 Architecture Overview
-
-This package is part of the FAIDD monorepo:
-- **`faidd` (CLI)**: Orchestration and project management.
-- **`@faidd/logic`**: Rule evaluation and verification engine.
-- **`@faidd/types`**: Foundation for cross-language type safety.
-- **`@faidd/schemas`**: Governance standards for agent interaction.
+After initialization, the project is structured into two distinct poles:
+- **`_faidd/` (System Core)**: Read-Only for AI agents. Contains rules, sessions, and daemon binaries.
+- **`faidd/` (Operational Brain)**: Writeable for agents to store mission registers, analysis, and implementation plans.
 
 ---
 
-## 🛡️ License
-
-Released under the [Apache 2.0 License](https://github.com/faidd/faidd/blob/main/LICENSE).
+*This package is a core component of the FAIDD Sovereign Security Framework.*

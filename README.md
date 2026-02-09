@@ -87,11 +87,28 @@ FAIDD is designed to be self-governing. The following resources define the behav
 
 ---
 
+## 🗺️ Roadmap & Milestones
+
+FAIDD follows a rigorous progression towards the `v1.0.0` (Sovereign Singularity).
+
+| Version | Milestone | Focus |
+| :--- | :--- | :--- |
+| **0.1.x** | **Sovereign Foundation** | Infrastructure, Monorepo & Documentation. |
+| **0.2.x** | **Perception Layer** | Majestic CLI, Onboarding & TUI Dashboard. |
+| **0.3.x** | **Nerve System** | Rust Daemon, IPC & Integrity Monitoring. |
+| **0.4.x** | **Governance Vault** | Rules Engine, Right Matrix & Zod Schemas. |
+| **0.5.x** | **Immutable Ledger** | Mission Register & Cryptographic Auditing. |
+| **1.0.0** | **Sovereign Singularity** | Full Integration & Production Readiness. |
+
+---
+
 ## 📜 Release History
 
 Track the evolution of the framework through our versioned logs:
 
 * **[Latest Release](./versions)**: view historical milestones and codenames.
+  * [v0.1.4 - Documentation Scaffolding & Versioning Protocol](./versions/v0.1.4.md)
+  * [v0.1.3 - Sovereign Perception Sync](./versions/v0.1.3.md)
   * [v0.1.0 - Sovereign Foundation](./versions/v0.1.0.md)
 
 ---
