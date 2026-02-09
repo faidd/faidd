@@ -1,78 +1,81 @@
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 import path from 'path';
-import { ConfigService, FaiddConfig } from '../services/config.service.js';
+import { GovernanceService, FaiddGovernance } from '../services/governance.service.js';
+import { ScaffoldService } from '../services/scaffold.service.js';
 
 export class OnboardingService {
-  constructor(private configService: ConfigService) {}
+  constructor(
+    private govService: GovernanceService,
+    private scaffoldService: ScaffoldService
+  ) {}
 
   // Starts the Sovereign Journey interactive flow
-
   async runJourney(): Promise<void> {
-    console.log(chalk.bold.blue('\nStarting your Sovereign Journey...\n'));
+    console.log(chalk.bold.blue('\nInitiating Sovereign Journey Phase...'));
+    console.log(chalk.dim('Identify yourself to establish authority.\n'));
 
     const answers = await inquirer.prompt([
       {
         type: 'input',
-        name: 'developerName',
-        message: 'What is your Sovereign Name (Architect/Developer)?',
+        name: 'architect',
+        message: 'Name of the Sovereign Architect?',
         default: process.env.USER || 'Architect',
       },
       {
         type: 'input',
         name: 'projectName',
-        message: 'Name of the perimeter you are securing?',
+        message: 'Project Perimeter Name?',
         default: path.basename(process.cwd()),
       },
       {
         type: 'list',
         name: 'ide',
-        message: 'Primary IDE for development?',
-        choices: ['VS Code', 'Cursor', 'Zed', 'JetBrains', 'Other'],
+        message: 'Primary Command Center (IDE)?',
+        choices: ['Cursor', 'VS Code', 'Zed', 'JetBrains', 'Other'],
       },
       {
         type: 'input',
         name: 'aiAssistant',
-        message: 'Which AI Agent is currently assisting you?',
-        default: 'Unknown AI Agent',
+        message: 'Which AI Entity is assisting you?',
+        default: 'Unknown AI Entity',
       },
       {
         type: 'confirm',
         name: 'confirm',
-        message: 'Establish FAIDD Sovereign Guardrails in this directory?',
+        message: 'Seal this perimeter under FAIDD Sovereignty?',
         default: true,
       }
     ]);
 
     if (!answers.confirm) {
-      console.log(chalk.red('\nSovereign initialization aborted.'));
+      console.log(chalk.red('\nSovereignty establishment aborted. Exiting.'));
       process.exit(0);
     }
 
-    const config: FaiddConfig = {
+    const governance: FaiddGovernance = {
       projectName: answers.projectName,
-      developerName: answers.developerName,
+      architect: answers.architect,
       environment: {
         ide: answers.ide,
         aiAssistant: answers.aiAssistant,
       },
-      governance: {
-        mode: 'sovereign',
-        enforceReadOnly: true,
+      security: {
+        level: 'SOVEREIGN',
+        readOnlyBunker: true,
       },
       metadata: {
-        createdAt: new Date().toISOString(),
-        version: '0.2.0',
+        establishedAt: new Date().toISOString(),
+        version: '0.1.5',
       }
     };
 
-    // Scaffolding physical structures
-    await this.configService.scaffoldHierarchy();
+    // 1. Scaffolding physical hierarchy
+    await this.scaffoldService.scaffold(process.cwd());
     
-    // Saving governance law
-    await this.configService.save(config);
+    // 2. Saving the Law
+    await this.govService.save(governance);
     
-    console.log(chalk.bold.green('\n✅ Perimeter sealed successfully.'));
-    console.log(chalk.dim('Hierarchy generated: .faiddrc.json, _faidd/, faidd/\n'));
+    console.log(chalk.bold.green('\n✅ SOVEREIGN PERIMETER VERIFIED.'));
   }
 }
