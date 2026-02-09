@@ -1,13 +1,31 @@
 {
   "name": "@faidd/types",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "type": "module",
   "private": false,
+  "description": "Fundamental TypeScript definitions for the FAIDD framework",
+  "author": "FAIDD Team",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/faidd/faidd#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faidd/faidd.git"
+  },
   "publishConfig": {
     "access": "public"
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc -b"
   },
   "files": [
     "dist",

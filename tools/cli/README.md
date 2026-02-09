@@ -1,17 +1,41 @@
-# @faidd/cli
+# FAIDD: Framework for AI-Driven Development
 
-The primary command-line interface and orchestration engine for the FAIDD framework.
+> **The primary Command Line Interface and orchestration engine for the FAIDD framework.**
 
-## Operational Overview
+FAIDD is a sovereign security framework designed to govern, audit, and secure the interactions of AI agents within high-integrity development environments. It establishes a robust barrier between the host system and autonomous agents by enforcing schema-first permissions and maintaining an immutable audit trail.
 
-The CLI acts as the coordinator between the developer, the AI agent, and the underlying monitoring systems. It is responsible for initializing the environment and managing the lifecycle of the security daemon.
+---
 
-### Primary Commands
+## 🚀 Quick Start (CLI)
 
-*   `init`: Configures the local environment and deploys the system registry.
-*   `start`: Launches the monitoring daemon and the real-time dashboard.
-*   `status`: Performs a health check on the active integrity chain and environment.
+To initialize a new FAIDD-secured environment:
 
-## Integration
+```bash
+npx faidd init
+```
 
-Built with `commander.js`, the CLI provides a clean, scriptable interface for integration into CI/CD pipelines or IDE environments.
+To start the monitoring daemon:
+
+```bash
+npx faidd start
+```
+
+---
+
+## 🎯 Strategic Significance
+
+FAIDD addresses the critical challenge of **AI Agency Security**. In an era of autonomous coding agents, FAIDD provides the necessary guardrails to ensure that agents remain within their designated scope, preventing unauthorized data exfiltration or system pollution.
+
+## 🧱 Architecture Overview
+
+This package is part of the FAIDD monorepo:
+- **`faidd` (CLI)**: Orchestration and project management.
+- **`@faidd/logic`**: Rule evaluation and verification engine.
+- **`@faidd/types`**: Foundation for cross-language type safety.
+- **`@faidd/schemas`**: Governance standards for agent interaction.
+
+---
+
+## 🛡️ License
+
+Released under the [Apache 2.0 License](https://github.com/faidd/faidd/blob/main/LICENSE).

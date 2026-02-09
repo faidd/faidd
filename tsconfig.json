@@ -7,16 +7,16 @@
     "strict": true,
     "declaration": true,
     "sourceMap": true,
-    "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
+    "composite": true,
+    "declarationMap": true,
     "baseUrl": ".",
     "paths": {
-      "@faidd/logic": ["core/logic/src/index.ts"],
-      "@faidd/types": ["core/types/src/index.ts"],
-      "@faidd/schemas": ["core/schemas/src/index.ts"]
+      "@faidd/types": ["core/types/dist/index.d.ts"],
+      "@faidd/logic": ["core/logic/dist/index.d.ts"],
+      "@faidd/schemas": ["core/schemas/dist/index.d.ts"]
     }
-  },
-  "exclude": ["node_modules", "dist"]
+  }
 }
