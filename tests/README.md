@@ -1,42 +1,26 @@
 # FAIDD Test Suite
 
-This directory contains the comprehensive test suite for the FAIDD framework, ensuring the integrity of the security daemon, the accuracy of the rules engine, and the reliability of the cryptographic ledger.
+This directory contains the global test suite for the FAIDD framework. Following our "Reinforced Concrete" quality standard, no code is deployed without rigorous validation.
 
-## Test Architecture
+## Test Structure
 
-FAIDD employs a multi-layered testing strategy to validate both logic and system-level enforcement.
+- **`cli/`**: End-to-End (E2E) behavior tests for the CLI. We simulate user interactions and verify terminal outputs as well as disk modifications.
+- **`integration/`**: Consistency tests between the different packages in the monorepo (`@faidd/logic`, `@faidd/types`, etc.).
 
-### 1. Unit Tests
-*   **Core Logic**: Located within `core/logic`, testing the rules evaluation algorithms and hashing functions in isolation.
-*   **Schemas**: Validation of JSON Schema structures and generated types.
+## Test Commands
 
-### 2. Integration Tests
-*   **Daemon Watcher**: Testing the Rust daemon's ability to capture filesystem events accurately.
-*   **CLI Orchestration**: Validating the interaction between the Node.js CLI and the background daemon process.
+To run the complete test suite:
 
-### 3. E2E Security Simulations
-*   **Agent Breach Scenarios**: Simulating unauthorized file operations by AI agents to verify daemon enforcement and ledger recording.
-*   **Integrity Chain Attacks**: Attempting to modify historical ledger entries to ensure the verification logic detects tampering.
-
-## Running Tests
-
-### Root Orchestration
 ```bash
-# Run all tests across the monorepo
 pnpm test
 ```
 
-### Targeted Testing
-```bash
-# Test the Core Logic package
-pnpm --filter @faidd/logic test
+To run only CLI tests:
 
-# Test the Rust Daemon
-cargo test -p faidd-daemon
+```bash
+pnpm test tests/cli
 ```
 
-## Maintenance Standards
+## Philosophy
 
-- **Coverage Requirement**: All architectural logic must maintain >90% code coverage.
-- **Fail-Fast**: Security-related tests are designed to fail immediately upon any breach of sovereignty.
-- **Audit Logging**: Tests themselves are designed to be recorded in a dedicated test ledger for transparency.
+We use **Vitest** for its speed and native TypeScript support, combined with **Execa** to drive CLI processes in an isolated and reproducible manner.
