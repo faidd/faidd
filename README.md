@@ -58,7 +58,8 @@ We welcome contributions from the community. See the list of people who have alr
 
 ### Support us by starring the repo
 
-[![Star History Chart](https://api.star-history.com/svg?repos=faidd/faidd&type=Date)](https://star-history.com/#faidd/faidd&Date)
+
+[![Star History Chart](https://api.star-history.com/svg?repos=faidd/faidd&type=date&legend=top-left)](https://www.star-history.com/#faidd/faidd&type=date&legend=top-left)
 
 ### Global Metrics
 
@@ -84,21 +85,6 @@ FAIDD is designed to be self-governing. The following resources define the behav
 * **[Agent Directives](./AGENTS.md)**: The Prime Directive and Class S Violations.
 * **[Claude Alignment](./CLAUDE.md)**: Deep technical context for Anthropic/Cursor agents.
 * **[Intelligence Tools](./.agents)**: Specialized sub-agent skills and workflows.
-
----
-
-## 🗺️ Roadmap & Milestones
-
-FAIDD follows a rigorous progression towards the `v1.0.0` (Sovereign Singularity).
-
-| Version | Milestone | Focus |
-| :--- | :--- | :--- |
-| **0.1.x** | **Sovereign Foundation** | Infrastructure, Monorepo & Documentation. |
-| **0.2.x** | **Perception Layer** | Majestic CLI, Onboarding & TUI Dashboard. |
-| **0.3.x** | **Nerve System** | Rust Daemon, IPC & Integrity Monitoring. |
-| **0.4.x** | **Governance Vault** | Rules Engine, Right Matrix & Zod Schemas. |
-| **0.5.x** | **Immutable Ledger** | Mission Register & Cryptographic Auditing. |
-| **1.0.0** | **Sovereign Singularity** | Full Integration & Production Readiness. |
 
 ---
 
