@@ -1,9 +1,13 @@
 {
   "name": "@faidd/schemas",
-  "version": "0.1.1",
+  "version": "0.1.2",
+  "type": "module",
   "private": false,
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "build": "tsc"
   },
   "files": [
     "dist",
