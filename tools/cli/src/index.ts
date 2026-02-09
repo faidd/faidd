@@ -1,36 +1,40 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import { displayBanner, displayStatus } from './ui/banner.js';
-import { ConfigService } from './services/config.service.js';
+import { GovernanceService } from './services/governance.service.js';
+import { ScaffoldService } from './services/scaffold.service.js';
 import { OnboardingService } from './onboarding/onboarding.service.js';
 
 const program = new Command();
-const configService = new ConfigService();
-const onboardingService = new OnboardingService(configService);
+const govService = new GovernanceService();
+const scaffoldService = new ScaffoldService();
+const onboardingService = new OnboardingService(govService, scaffoldService);
 
 program
   .name('faidd')
-  .description('FAIDD Sovereign CLI - Perception Layer')
+  .description('FAIDD Sovereign CLI - Elite Perception Layer')
   .version('0.1.5');
 
-// Default action
+// Main Entry Point Logic
 program
   .action(async () => {
     displayBanner();
     
-    if (!(await configService.exists())) {
+    if (!(await govService.exists())) {
       await onboardingService.runJourney();
     } else {
-      const config = await configService.load();
-      console.log(`FAIDD Active | Sovereign: ${config.developerName} | Perimeter: ${config.projectName}\n`);
-      displayStatus('ALPHA-1', 'OPERATIONAL');
+      try {
+        const gov = await govService.load();
+        console.log(`FAIDD Active | Architect: ${gov.architect} | Perimeter: ${gov.projectName}\n`);
+        displayStatus('ELITE-ALPHA', 'VERIFIED');
+      } catch (error) {
+        console.error(error.message);
+        process.exit(1);
+      }
     }
   });
 
-
-  // Command: init
-  // Re-scaffolds or updates the sovereign perimeter.
- 
+// Command: init
 program
   .command('init')
   .description('Initialize or re-seal the Sovereign Hierarchy')
@@ -39,22 +43,19 @@ program
     await onboardingService.runJourney();
   });
 
-
-  // Command: status
-  // Provides a deep audit report of the perimeter.
- 
+// Command: status
 program
   .command('status')
   .description('Show Sovereign integrity report')
   .action(async () => {
     displayBanner();
-    if (await configService.exists()) {
-      const config = await configService.load();
-      displayStatus('ALPHA-1', 'VERIFIED');
-      console.log('--- Configuration Report ---');
-      console.log(JSON.stringify(config, null, 2));
+    if (await govService.exists()) {
+      const gov = await govService.load();
+      displayStatus('ELITE-ALPHA', 'AUDITED');
+      console.log('--- Sovereign Governance Registry ---');
+      console.log(JSON.stringify(gov, null, 2));
     } else {
-      console.log('No Sovereign Perimeter found. Run `faidd init` to seal.');
+      console.log('No Sovereign Perimeter detected. Run `faidd init` to seal.');
     }
   });
 
