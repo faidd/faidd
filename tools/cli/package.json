@@ -25,7 +25,7 @@
     }
   },
   "scripts": {
-    "build": "tsc -b",
+    "build": "tsc -b && cp -r src/installers/templates dist/installers/ && cp src/installers/install-messages.md dist/installers/",
     "dev": "tsc -b --watch"
   },
   "files": [
