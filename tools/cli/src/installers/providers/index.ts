@@ -1,6 +1,7 @@
 import { ProviderRegistry } from './registry.js';
 import { CursorProvider } from './ide/cursor.js';
 import { VSCodeProvider } from './ide/vscode.js';
+import { OpenCodeProvider } from './ide/opencode.js';
 import { ClaudeProvider } from './agents/claude.js';
 import { GeminiProvider } from './agents/gemini.js';
 
@@ -10,6 +11,7 @@ export const createRegistry = (): ProviderRegistry => {
   // Register IDE Providers
   registry.register(new CursorProvider());
   registry.register(new VSCodeProvider());
+  registry.register(new OpenCodeProvider());
 
   // Register Agent Providers
   registry.register(new ClaudeProvider());
