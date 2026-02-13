@@ -37,10 +37,21 @@ export class InstallerService {
     // Determine the CLI's own directory (source or dist)
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
-    // In production, we are in dist/services/. Source root is dist/ (one level up)
-    const cliRoot = path.join(__dirname, '..');
     
-    this.modules = new ModuleService(cliRoot);
+    // Check if we are in 'dist' or 'src'
+    const isDist = __dirname.includes('/dist/');
+    let moduleSourceRoot: string;
+
+    if (isDist) {
+      // In production (dist/services/), modules are copied to dist/modules/
+      moduleSourceRoot = path.join(__dirname, '..', 'modules');
+    } else {
+      // In development (src/services/), modules are in the root core/ folder
+      // Path: tools/cli/src/services/ -> tools/cli/src -> tools/cli -> tools -> project root
+      moduleSourceRoot = path.join(__dirname, '..', '..', '..', '..', 'core');
+    }
+    
+    this.modules = new ModuleService(moduleSourceRoot);
   }
 
   // Main entry point for "install" or "update"
