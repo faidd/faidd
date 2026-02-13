@@ -1,6 +1,6 @@
 {
   "name": "faidd",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "type": "module",
   "private": false,
   "description": "FAIDD Official CLI - The orchestration engine for AI-Driven Development",
@@ -25,7 +25,7 @@
     }
   },
   "scripts": {
-    "build": "tsc -b && cp -r src/installers/templates dist/installers/ && cp src/installers/install-messages.md dist/installers/",
+    "build": "tsc -b && mkdir -p dist/modules && cp -r ../../core dist/modules/core && cp -r src/installers/templates dist/installers/ && cp src/installers/install-messages.md dist/installers/",
     "dev": "tsc -b --watch"
   },
   "files": [

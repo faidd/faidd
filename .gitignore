@@ -109,6 +109,7 @@ next-env.d.ts
 !.agents/**
 !versions/
 !versions/**
+!tools/cli/src/installers/install-messages.md
 
 # additionnals
 .protocols/

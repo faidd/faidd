@@ -27,8 +27,8 @@ export class ModuleService {
   private bunkerName = '_faidd';
   private customPaths = new Map<string, string>();
 
-  // configurable source root (where src/modules/ lives)
-  constructor(private sourceRoot: string = '') {}
+  // configurable modules directory
+  constructor(private modulesDir: string = '') {}
 
   setBunkerName(name: string) {
     this.bunkerName = name;
@@ -45,14 +45,13 @@ export class ModuleService {
     const modules: ModuleMeta[] = [];
     const custom: ModuleMeta[] = [];
 
-    const modulesDir = path.join(this.sourceRoot, 'src', 'modules');
-    if (!(await fs.pathExists(modulesDir))) return { modules, custom };
+    if (!(await fs.pathExists(this.modulesDir))) return { modules, custom };
 
-    const entries = await fs.readdir(modulesDir, { withFileTypes: true });
+    const entries = await fs.readdir(this.modulesDir, { withFileTypes: true });
     for (const entry of entries) {
       if (!entry.isDirectory() || entry.name === 'core') continue;
 
-      const modulePath = path.join(modulesDir, entry.name);
+      const modulePath = path.join(this.modulesDir, entry.name);
       const meta = await this.readModuleMeta(modulePath, entry.name);
       if (!meta) continue;
 
@@ -114,14 +113,13 @@ export class ModuleService {
       return this.customPaths.get(moduleCode)!;
     }
 
-    // search src/modules by reading each module.yaml
-    const modulesDir = path.join(this.sourceRoot, 'src', 'modules');
-    if (!(await fs.pathExists(modulesDir))) return null;
+    // search modulesDir by reading each module.yaml
+    if (!(await fs.pathExists(this.modulesDir))) return null;
 
-    const entries = await fs.readdir(modulesDir, { withFileTypes: true });
+    const entries = await fs.readdir(this.modulesDir, { withFileTypes: true });
     for (const entry of entries) {
       if (!entry.isDirectory()) continue;
-      const modulePath = path.join(modulesDir, entry.name);
+      const modulePath = path.join(this.modulesDir, entry.name);
       const meta = await this.readModuleMeta(modulePath, entry.name);
       if (meta && meta.code === moduleCode) {
         return modulePath;

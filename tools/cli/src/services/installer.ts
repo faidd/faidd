@@ -11,6 +11,7 @@ import { ConfigService } from './config.service.js';
 import { DependencyResolver } from './dependency-resolver.js';
 import { GeneratorService } from './generator.service.js';
 import { DiscoveryService } from './discovery.service.js';
+import { fileURLToPath } from 'url';
 
 export interface InstallOptions {
   force?: boolean;
@@ -33,7 +34,24 @@ export class InstallerService {
     private registry: ProviderRegistry,
     private projectRoot: string = process.cwd()
   ) {
-    this.modules = new ModuleService(this.projectRoot);
+    // Determine the CLI's own directory (source or dist)
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    
+    // Check if we are in 'dist' or 'src'
+    const isDist = __dirname.includes('/dist/');
+    let moduleSourceRoot: string;
+
+    if (isDist) {
+      // In production (dist/services/), modules are copied to dist/modules/
+      moduleSourceRoot = path.join(__dirname, '..', 'modules');
+    } else {
+      // In development (src/services/), modules are in the root core/ folder
+      // Path: tools/cli/src/services/ -> tools/cli/src -> tools/cli -> tools -> project root
+      moduleSourceRoot = path.join(__dirname, '..', '..', '..', '..', 'core');
+    }
+    
+    this.modules = new ModuleService(moduleSourceRoot);
   }
 
   // Main entry point for "install" or "update"
@@ -54,7 +72,11 @@ export class InstallerService {
       const requestedModules = ['core', ...(options.modules || [])];
       spinner.text = 'Resolving dependencies...';
       const resolution = await this.resolver.resolve(requestedModules, async (id) => {
-        const meta = await this.modules.readModuleMeta(path.join(this.projectRoot, 'src', 'modules', id), id); // naive path
+        // Resolve path to the module within the CLI's own source/dist
+        const moduleSourcePath = await this.modules.findSource(id);
+        if (!moduleSourcePath) return [];
+
+        const meta = await this.modules.readModuleMeta(moduleSourcePath, id);
         return meta?.dependencies || [];
       });
 
