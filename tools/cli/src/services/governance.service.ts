@@ -1,45 +1,31 @@
-import fs from 'fs-extra';
-import path from 'path';
-import { z } from 'zod';
+// governance.service.ts — thin wrapper around ConfigService for backward compat
+// all governance logic lives in config.service.ts now
 import chalk from 'chalk';
+import { ConfigService, Governance } from './config.service.js';
 
-export const FaiddGovernanceSchema = z.object({
-  projectName: z.string(),
-  architect: z.string(),
-  environment: z.object({
-    ide: z.string(),
-    aiAssistant: z.string(),
-  }),
-  security: z.object({
-    level: z.enum(['SOVEREIGN', 'AUDIT', 'RELAXED']),
-    readOnlyBunker: z.boolean().default(true),
-  }),
-  metadata: z.object({
-    establishedAt: z.string(),
-    version: z.string(),
-  }),
-});
-
-export type FaiddGovernance = z.infer<typeof FaiddGovernanceSchema>;
+export type { Governance as FaiddGovernance } from './config.service.js';
 
 export class GovernanceService {
-  private configPath = path.join(process.cwd(), '.faiddrc.json');
+  private config: ConfigService;
 
-  async exists(): Promise<boolean> {
-    return fs.pathExists(this.configPath);
+  constructor(projectDir?: string) {
+    this.config = new ConfigService(projectDir);
   }
 
-  async load(): Promise<FaiddGovernance> {
+  async exists(): Promise<boolean> {
+    return this.config.governanceExists();
+  }
+
+  async load(): Promise<Governance> {
     try {
-      const raw = await fs.readJSON(this.configPath);
-      return FaiddGovernanceSchema.parse(raw);
+      return await this.config.loadGovernance();
     } catch (error) {
       throw new Error(`Governance Violation: .faiddrc.json is corrupted or invalid. ${error}`);
     }
   }
 
-  async save(gov: FaiddGovernance): Promise<void> {
-    await fs.writeJSON(this.configPath, gov, { spaces: 2 });
+  async save(gov: Governance): Promise<void> {
+    await this.config.saveGovernance(gov);
     console.log(chalk.green('\n⚖️  FAIDD Governance Law signed and sealed.'));
   }
 }

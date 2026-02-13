@@ -1,56 +1,62 @@
-import fs from 'fs-extra';
+// opencode.ts — OpenCode provider
+// flat delivery model similar to codex, into .opencode/
 import path from 'path';
 import chalk from 'chalk';
 import { IProvider, ProviderMetadata } from '../registry.js';
+import { BaseProvider } from '../base.provider.js';
 import { DiscoveryService } from '../../../services/discovery.service.js';
 import { GeneratorService } from '../../../services/generator.service.js';
 
-/**
- * OpenCode Provider (Elite)
- * Implements the FLAT delivery model for command triggers.
- * Ensures compatibility with IDEs that do not support nested folder triggers.
- */
-export class OpenCodeProvider implements IProvider {
+export class OpenCodeProvider extends BaseProvider implements IProvider {
   readonly metadata: ProviderMetadata = {
     name: 'opencode',
-    displayName: 'OpenCode IDE',
-    category: 'IDE'
+    displayName: 'OpenCode',
+    category: 'IDE',
   };
 
-  private readonly configDir = '.opencode';
-  private readonly agentsDir = 'agent';
-  
   private discovery = new DiscoveryService();
   private generator = new GeneratorService();
 
+  constructor() {
+    super('opencode', 'OpenCode');
+  }
+
   async detect(projectDir: string): Promise<boolean> {
-    return fs.pathExists(path.join(projectDir, this.configDir));
+    return this.exists(path.join(projectDir, '.opencode'));
   }
 
   async setup(projectDir: string): Promise<void> {
-    const bunkerDir = path.join(projectDir, '_faidd');
-    const baseDir = path.join(projectDir, this.configDir);
-    const agentsDir = path.join(baseDir, this.agentsDir);
+    console.log(chalk.cyan(`Setting up ${this.displayName}...`));
 
-    await fs.ensureDir(agentsDir);
+    await this.cleanup(projectDir);
 
-    // Discover & Flatten Agents
-    const agents = await this.discovery.discoverAgents(bunkerDir);
+    const bunkerDir = path.join(projectDir, this.bunkerName);
+    const faidDir = path.join(projectDir, '.opencode', 'faidd');
+    await this.ensureDir(faidDir);
+
+    // agents as flat trigger files
+    const agents = await this.discovery.collectAgents(bunkerDir);
     for (const agent of agents) {
-      const content = await this.generator.generateAgentLauncher(agent);
-      // Flat naming: faidd-agent-{module}-{name}.md
-      const fileName = `faidd-agent-${agent.module}-${agent.name}.md`;
-      await fs.writeFile(path.join(agentsDir, fileName), content);
+      const content = this.generator.generateAgentCommand(agent, this.bunkerName);
+      await this.writeFile(path.join(faidDir, `agent-${agent.name}.md`), content);
     }
 
-    // Discover & Flatten Tasks
-    const tasks = await this.discovery.discoverTasks(bunkerDir);
-    for (const task of tasks) {
-        const content = this.generator.generateTaskTrigger(task);
-        const fileName = `faidd-${task.type}-${task.module}-${task.name}.md`;
-        await fs.writeFile(path.join(agentsDir, fileName), content);
+    // standalone tasks & tools as flat triggers
+    const taskTools = await this.discovery.collectTasksAndTools(bunkerDir);
+    for (const tt of taskTools.filter(t => t.standalone)) {
+      const content = this.generator.generateTaskToolCommand(tt, this.bunkerName);
+      await this.writeFile(path.join(faidDir, `${tt.type}-${tt.name}.md`), content);
     }
 
-    console.log(`${chalk.blue('◈')} ${chalk.dim(`OpenCode: ${agents.length + tasks.length} flat triggers deployed.`)}`);
+    this.logSuccess('Setup complete.');
+    this.logInfo(`${agents.length} agents, ${taskTools.filter(t => t.standalone).length} tasks/tools deployed.`);
+  }
+
+  async cleanup(projectDir: string): Promise<void> {
+    const faidDir = path.join(projectDir, '.opencode', 'faidd');
+    if (await this.exists(faidDir)) {
+      await this.remove(faidDir);
+      this.logInfo('Cleared old config.');
+    }
   }
 }

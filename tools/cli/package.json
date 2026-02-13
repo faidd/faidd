@@ -1,6 +1,6 @@
 {
   "name": "faidd",
-  "version": "0.2.0",
+  "version": "0.1.6",
   "type": "module",
   "private": false,
   "description": "FAIDD Official CLI - The orchestration engine for AI-Driven Development",
@@ -41,12 +41,14 @@
     "boxen": "^8.0.1",
     "chalk": "^4.1.2",
     "commander": "^11.1.0",
+    "csv-parse": "^6.1.0",
     "figlet": "^1.10.0",
     "fs-extra": "^11.2.0",
     "gradient-string": "^3.0.0",
     "inquirer": "^9.3.8",
     "listr2": "^10.1.0",
     "ora": "^9.3.0",
+    "yaml": "^2.8.2",
     "zod": "^3.25.76"
   },
   "devDependencies": {

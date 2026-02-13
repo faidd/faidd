@@ -1,52 +1,74 @@
-import fs from 'fs-extra';
+// codex.ts — OpenAI Codex / ChatGPT CLI provider
+// uses a flat file structure with a single codex.md instruction file
 import path from 'path';
 import chalk from 'chalk';
-import os from 'os';
 import { IProvider, ProviderMetadata } from '../registry.js';
+import { BaseProvider } from '../base.provider.js';
 import { DiscoveryService } from '../../../services/discovery.service.js';
 import { GeneratorService } from '../../../services/generator.service.js';
 
-/**
- * Codex Provider (Elite)
- * Implements global and project-specific export of FAIDD prompts for Codex CLI.
- */
-export class CodexProvider implements IProvider {
+export class CodexProvider extends BaseProvider implements IProvider {
   readonly metadata: ProviderMetadata = {
     name: 'codex',
     displayName: 'Codex CLI',
-    category: 'IDE'
+    category: 'IDE',
   };
 
   private discovery = new DiscoveryService();
   private generator = new GeneratorService();
 
+  constructor() {
+    super('codex', 'Codex');
+  }
+
   async detect(projectDir: string): Promise<boolean> {
-    const globalCodex = path.join(os.homedir(), '.codex');
-    const projectCodex = path.join(projectDir, '.codex');
-    return (await fs.pathExists(globalCodex)) || (await fs.pathExists(projectCodex));
+    return this.exists(path.join(projectDir, 'codex.md'));
   }
 
   async setup(projectDir: string): Promise<void> {
-    const bunkerDir = path.join(projectDir, '_faidd');
-    const targetDir = path.join(projectDir, '.codex', 'prompts');
+    console.log(chalk.cyan(`Setting up ${this.displayName}...`));
 
-    await fs.ensureDir(targetDir);
+    const bunkerDir = path.join(projectDir, this.bunkerName);
 
-    // Codex triggers are always FLAT
-    const agents = await this.discovery.discoverAgents(bunkerDir);
+    // codex uses a flat structure — one global instruction file + triggers
+    const triggersDir = path.join(projectDir, '.codex', 'faidd');
+    await this.ensureDir(triggersDir);
+
+    // 1. deploy codex.md at project root (global instructions)
+    await this.deployGlobalInstructions(projectDir);
+
+    // 2. flat triggers for agents
+    const agents = await this.discovery.collectAgents(bunkerDir);
     for (const agent of agents) {
-      const content = await this.generator.generateAgentLauncher(agent);
-      const fileName = `faidd-${agent.module}-${agent.name}.md`;
-      await fs.writeFile(path.join(targetDir, fileName), content);
+      const trigger = this.generator.generateFlatTrigger(
+        agent.name, agent.relativePath, this.bunkerName
+      );
+      await this.writeFile(path.join(triggersDir, `agent-${agent.name}.md`), trigger);
     }
 
-    const tasks = await this.discovery.discoverTasks(bunkerDir);
-    for (const task of tasks) {
-      const content = this.generator.generateTaskTrigger(task);
-      const fileName = `faidd-${task.module}-${task.type}-${task.name}.md`;
-      await fs.writeFile(path.join(targetDir, fileName), content);
+    // 3. flat triggers for standalone tasks & tools
+    const taskTools = await this.discovery.collectTasksAndTools(bunkerDir);
+    for (const tt of taskTools.filter(t => t.standalone)) {
+      const trigger = this.generator.generateFlatTrigger(
+        tt.name, tt.path, this.bunkerName
+      );
+      await this.writeFile(path.join(triggersDir, `${tt.type}-${tt.name}.md`), trigger);
     }
 
-    console.log(`${chalk.blue('◈')} ${chalk.dim(`Codex: ${agents.length + tasks.length} prompts exported.`)}`);
+    this.logSuccess('Setup complete.');
+    this.logInfo(`${agents.length} agents, ${taskTools.filter(t => t.standalone).length} tasks/tools deployed.`);
+  }
+
+  private async deployGlobalInstructions(projectDir: string) {
+    const content = [
+      '# FAIDD System Instructions',
+      '',
+      `System core is at \`${this.bunkerName}/\`. Do not modify it directly.`,
+      'Operational workspace is at `faidd/`. Log decisions there.',
+      '',
+      'Check `.codex/faidd/` for available agent and task triggers.',
+    ].join('\n');
+
+    await this.writeFile(path.join(projectDir, 'codex.md'), content);
   }
 }

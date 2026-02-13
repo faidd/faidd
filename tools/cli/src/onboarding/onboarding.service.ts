@@ -1,7 +1,9 @@
+// onboarding.service.ts — interactive first-run setup flow
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 import path from 'path';
-import { GovernanceService, FaiddGovernance } from '../services/governance.service.js';
+import { GovernanceService } from '../services/governance.service.js';
+import { Governance } from '../services/config.service.js';
 import { ScaffoldService } from '../services/scaffold.service.js';
 
 export class OnboardingService {
@@ -10,50 +12,50 @@ export class OnboardingService {
     private scaffoldService: ScaffoldService
   ) {}
 
-  // Starts the Sovereign Journey interactive flow
+  // run the first-time setup flow
   async runJourney(): Promise<void> {
-    console.log(chalk.bold.blue('\nInitiating Sovereign Journey Phase...'));
-    console.log(chalk.dim('Identify yourself to establish authority.\n'));
+    console.log(chalk.bold.blue('\nInitiating FAIDD setup...'));
+    console.log(chalk.dim('Identify yourself to establish your perimeter.\n'));
 
     const answers = await inquirer.prompt([
       {
         type: 'input',
         name: 'architect',
-        message: 'Name of the Sovereign Architect?',
+        message: 'Your name?',
         default: process.env.USER || 'Architect',
       },
       {
         type: 'input',
         name: 'projectName',
-        message: 'Project Perimeter Name?',
+        message: 'Project name?',
         default: path.basename(process.cwd()),
       },
       {
         type: 'list',
         name: 'ide',
-        message: 'Primary Command Center (IDE)?',
-        choices: ['Cursor', 'VS Code', 'Zed', 'JetBrains', 'Other'],
+        message: 'Primary IDE?',
+        choices: ['Cursor', 'VS Code', 'Claude Code', 'Codex', 'OpenCode', 'Other'],
       },
       {
         type: 'input',
         name: 'aiAssistant',
-        message: 'Which AI Entity is assisting you?',
-        default: 'Unknown AI Entity',
+        message: 'AI assistant?',
+        default: 'Claude',
       },
       {
         type: 'confirm',
         name: 'confirm',
-        message: 'Seal this perimeter under FAIDD Sovereignty?',
+        message: 'Set up FAIDD in this directory?',
         default: true,
-      }
+      },
     ]);
 
     if (!answers.confirm) {
-      console.log(chalk.red('\nSovereignty establishment aborted. Exiting.'));
+      console.log(chalk.red('\nSetup aborted.'));
       process.exit(0);
     }
 
-    const governance: FaiddGovernance = {
+    const governance: Governance = {
       projectName: answers.projectName,
       architect: answers.architect,
       environment: {
@@ -66,16 +68,13 @@ export class OnboardingService {
       },
       metadata: {
         establishedAt: new Date().toISOString(),
-        version: '0.1.5',
-      }
+        version: '0.2.0',
+      },
     };
 
-    // 1. Scaffolding physical hierarchy
     await this.scaffoldService.scaffold(process.cwd());
-    
-    // 2. Saving the Law
     await this.govService.save(governance);
-    
-    console.log(chalk.bold.green('\n✅ SOVEREIGN PERIMETER VERIFIED.'));
+
+    console.log(chalk.bold.green('\n✅ FAIDD perimeter established.'));
   }
 }
