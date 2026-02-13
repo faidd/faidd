@@ -16,11 +16,12 @@ export const displayBanner = () => {
   ███          ███    ███ ███  ███    ███ ███    ███ 
   ███          ███    ███ ███  ███    ███ ███    ███ 
   ███          ███    █▀  █▀   ████████▀  ████████▀  
+                          ●
   `;
 
   // Deep Cobalt to Electric Cyan (The "Sovereign" Gradient)
   const faiddGradient = gradient(['#001f3f', '#0074D9', '#7FDBFF']);
-  const subline = chalk.bold.cyan('      S O V E R E I G N   C O N T R O L   F R A M E W O R K   v0.1.5\n');
+  const subline = chalk.bold.cyan('      Framework for Ai Driven Dev   v0.1.8\n');
 
   process.stdout.write('\n' + faiddGradient(ascii));
   process.stdout.write(subline);
