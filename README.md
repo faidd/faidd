@@ -54,24 +54,15 @@ FAIDD addresses the critical challenge of **AI Agency Security**. In an era of a
 
 We welcome contributions from the community. See the list of people who have already contributed:
 
-<a href="https://github.com/faidd/faidd/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=faidd/faidd" />
-</a>
+[![Contributors](https://contrib.rocks/image?repo=faidd/faidd)](https://github.com/faidd/faidd/graphs/contributors)
 
-<br>
-<br>
+### Support us by starring the repo
 
-### Support us by starring the repo!
 
-<a href="https://star-history.com/#faidd/faidd&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=faidd/faidd&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=faidd/faidd&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=faidd/faidd&type=Date" />
- </picture>
-</a>
+[![Star History Chart](https://api.star-history.com/svg?repos=faidd/faidd&type=date&legend=top-left)](https://www.star-history.com/#faidd/faidd&type=date&legend=top-left)
 
 ### Global Metrics
+
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/faidd/faidd)
 ![GitHub star history](https://star-history.com/#faidd/faidd&Date)
 
@@ -91,9 +82,9 @@ We welcome contributions from the community. See the list of people who have alr
 
 FAIDD is designed to be self-governing. The following resources define the behavioral logic and operational "mindset" of AI agents working within this repository:
 
-*   **[Agent Directives](./AGENTS.md)**: The Prime Directive and Class S Violations.
-*   **[Claude Alignment](./CLAUDE.md)**: Deep technical context for Anthropic/Cursor agents.
-*   **[Intelligence Tools](./.agents)**: Specialized sub-agent skills and workflows.
+* **[Agent Directives](./AGENTS.md)**: The Prime Directive and Class S Violations.
+* **[Claude Alignment](./CLAUDE.md)**: Deep technical context for Anthropic/Cursor agents.
+* **[Intelligence Tools](./.agents)**: Specialized sub-agent skills and workflows.
 
 ---
 
@@ -101,8 +92,10 @@ FAIDD is designed to be self-governing. The following resources define the behav
 
 Track the evolution of the framework through our versioned logs:
 
-*   **[Latest Release](./versions)**: view historical milestones and codenames.
-    *   [v0.1.0 - Sovereign Foundation](./versions/v0.1.0.md)
+* **[Latest Release](./versions)**: view historical milestones and codenames.
+  * [v0.1.4 - Documentation Scaffolding & Versioning Protocol](./versions/v0.1.4.md)
+  * [v0.1.3 - Sovereign Perception Sync](./versions/v0.1.3.md)
+  * [v0.1.0 - Sovereign Foundation](./versions/v0.1.0.md)
 
 ---
 
