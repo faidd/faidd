@@ -1,104 +1,104 @@
-# FAIDD: Framework for AI-Driven Development
+<p align="center">
+  <img src="assets/banner%20faidd.png" width="800" alt="FAIDD Banner">
+</p>
 
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-[![GitHub stars](https://img.shields.io/github/stars/faidd/faidd?style=social)](https://github.com/faidd/faidd/stargazers)
-[![GitHub contributors](https://img.shields.io/github/contributors/faidd/faidd)](https://github.com/faidd/faidd/graphs/contributors)
-[![NPM Downloads](https://img.shields.io/npm/dw/faidd?style=flat-square&logo=npm&color=cb3837)](https://www.npmjs.com/package/faidd)
-[![Logic Downloads](https://img.shields.io/npm/dw/@faidd/logic?label=logic%20downloads)](https://www.npmjs.com/package/@faidd/logic)
-
-FAIDD is a sovereign security framework designed to govern, audit, and secure the interactions of AI agents within high-integrity development environments. It establishes a robust barrier between the host system and autonomous agents by enforcing schema-first permissions and maintaining an immutable audit trail.
-
----
-
-## Technical Architecture
-
-FAIDD follows a modular monorepo architecture, leveraging the safety of Rust for system monitoring and the flexibility of TypeScript for orchestration mapping.
-
-### Core Ecosystem (`core/`)
-
-The foundational logic layer, ensuring cross-language type safety and rule evaluation.
-
-* **[Schemas](./core/schemas)**: The source of truth for the system contract.
-* **[Types](./core/types)**: Synchronized type definitions for Rust and TypeScript.
-* **[Logic](./core/logic)**: The engine responsible for verification and integrity chaining.
-* **[Agents](./core/agents)**: Standardized behavioral mindsets for LLMs.
-
-### Operational Tools (`tools/`)
-
-The operational interface of the framework.
-
-* **[CLI Interface](./tools/cli)**: Project management and agent bootstrapping.
-* **[Guard Daemon](./tools/daemon)**: Rust-based filesystem watcher and rule enforcer.
-* **[CUI Console](./tools/cui)**: CLI User Interface for real-time telemetry and monitoring.
-
-### System Verification (`tests/`)
-
-* **[Test Suite](./tests)**: Comprehensive unit, integration, and E2E security tests.
-
-### System Registry (`_faidd/`)
-
-The local runtime state, managed exclusively by the framework to maintain environment sovereignty.
+<p align="center">
+  <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
+  <a href="https://www.npmjs.com/package/faidd"><img src="https://img.shields.io/npm/v/faidd?style=flat-square&color=cb3837" alt="NPM Version"></a>
+  <a href="https://www.npmjs.com/package/faidd"><img src="https://img.shields.io/npm/dw/faidd?style=flat-square&logo=npm&color=cb3837" alt="NPM Downloads"></a>
+  <a href="https://github.com/faidd/faidd/stargazers"><img src="https://img.shields.io/github/stars/faidd/faidd?style=social" alt="GitHub stars"></a>
+</p>
 
 ---
 
-## Strategic Significance
+# 🛡️ FAIDD: The Intelligence Encapsulation Framework
 
-FAIDD addresses the critical challenge of **AI Agency Security**. In an era of autonomous coding agents, FAIDD provides the necessary guardrails to ensure that agents remain within their designated scope, preventing unauthorized data exfiltration or system pollution.
+**FAIDD is not a code generator. It is the Sovereign Perimeter where code is born.**
 
----
+Most AI orchestration tools (like legacy B-Mad) focus on the output—generating files, pushing commits, writing boilerplates. They treat the AI as a simple worker. **FAIDD treats the AI as a strategic entity** that requires a high-fidelity environment to function at peak performance.
 
-## Community and Contributions
+## 🧠 The Mission: Cognitive Scaffolding
 
-### Contributors
+In unorganized environments, AI agents suffer from **Cognitive Fragmentation**. They get lost in the noise of your root directory, misinterpret your project rules, and eventually "drift" away from the mission. 
 
-We welcome contributions from the community. See the list of people who have already contributed:
-
-[![Contributors](https://contrib.rocks/image?repo=faidd/faidd)](https://github.com/faidd/faidd/graphs/contributors)
-
-### Support us by starring the repo
-
-
-[![Star History Chart](https://api.star-history.com/svg?repos=faidd/faidd&type=date&legend=top-left)](https://www.star-history.com/#faidd/faidd&type=date&legend=top-left)
-
-### Global Metrics
-
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/faidd/faidd)
-![GitHub star history](https://star-history.com/#faidd/faidd&Date)
+FAIDD establishes an **Intelligence Frame**—a physical and logical scaffold that encapsulates the agent's reasoning. By enforcing a strict hierarchy between system-level memory and project-level execution, FAIDD ensures that every token generated by the AI is aligned with your absolute strategic intent.
 
 ---
 
-## Governance & Compliance
+## 🚀 The Three Pillars of Sovereignty
 
-* [Contributing Guidelines](./CONTRIBUTING.md)
-* [Security Policy](./SECURITY.md)
-* [AI Agent Interaction Rules](./AGENTS.md)
-* [Claude/Cursor Specific Guidance](./CLAUDE.md)
-* [Code of Conduct](./CODE_OF_CONDUCT.md)
+### 1. High-Fidelity Encapsulation
+
+FAIDD wraps your development session in a **Sovereign Perimeter**. It's the difference between coding in a crowded street and coding in a high-tech command center. Your AI is "shielded" from project noise, allowing it to focus 100% of its attention on the task at hand.
+
+### 2. Tactical Alignment (Bunker vs. Brain)
+
+We enforce a strict **Physical Decoupling** of project consciousness:
+
+* **The Bunker (`_faidd/`)**: The immutable core. It holds the "Soul" of your project—your agents, your governance rules, and your session history. It is the system of record.
+* **The Brain (`faidd/`)**: The operational command. It's where the deep analysis and architectural planning happen. It is the tactical layer of the project.
+
+### 3. Multi-Agent Mastery
+
+FAIDD isn't built for one tool. It is the **Cognitive Layer** for the world's most powerful AI IDEs. Whether you use **Cursor, Claude-Code, Windsurf**, or local LLMs, FAIDD provides the uniform structure they need to understand their mission with zero friction.
 
 ---
 
-## 🧠 AI Intelligence Layer
+## 🏗️ Technical Architecture
 
-FAIDD is designed to be self-governing. The following resources define the behavioral logic and operational "mindset" of AI agents working within this repository:
+```mermaid
+graph TD
+    User((Architect)) --> CLI[FAIDD CLI]
+    CLI --> Bunker["🛡️ The Bunker (_faidd/)"]
+    CLI --> Brain["🧠 The Brain (faidd/)"]
+    
+    subgraph "Sovereign Layer (Immutable Context)"
+    Bunker --> Agents["Agents: Cognitive Mindsets"]
+    Bunker --> Rules["Rules: Alignment Manifests"]
+    Bunker --> Rights["Rights: ACL Matrix"]
+    end
+    
+    subgraph "Operational Layer (Strategic Context)"
+    Brain --> Analysis["Deep Strategic Dives"]
+    Brain --> Planning["Feature Blueprints"]
+    Brain --> Ledger["Mission Audit Trail"]
+    end
+```
 
-* **[Agent Directives](./AGENTS.md)**: The Prime Directive and Class S Violations.
-* **[Claude Alignment](./CLAUDE.md)**: Deep technical context for Anthropic/Cursor agents.
-* **[Intelligence Tools](./.agents)**: Specialized sub-agent skills and workflows.
+---
+
+## ⚡ Quick Start: Deploy the Frame
+
+Experience the power of structured intelligence in under 10 seconds.
+
+![FAIDD Terminal Experience](assets/faidd-terminal.png)
+
+```bash
+npx faidd
+```
+
+This command triggers the **Sovereign Onboarding Flow**, established your workspace identity and aligning your AI environment automatically.
+
+---
+
+## 📊 Star History & Growth
+
+*The community of Architects is growing. Join the evolution.*
+
+[![Star History Chart](https://api.star-history.t9t.io/svg?repos=faidd/faidd&type=Date)](https://star-history.com/#faidd/faidd&Date)
 
 ---
 
 ## 📜 Release History
 
-Track the evolution of the framework through our versioned logs:
-
-* **[Latest Release](./versions)**: view historical milestones and codenames.
-  * [v0.1.4 - Documentation Scaffolding & Versioning Protocol](./versions/v0.1.4.md)
-  * [v0.1.3 - Sovereign Perception Sync](./versions/v0.1.3.md)
-  * [v0.1.0 - Sovereign Foundation](./versions/v0.1.0.md)
+| Version | Milestone | Narrative | Status |
+| :--- | :--- | :--- | :--- |
+| **v0.1.8** | [The Intelligence Singularity](./versions/v0.1.8.md) | Identity Refresh & Clean Architecture | **Current** |
+| **v0.1.7** | [Sovereign Autonomy](./versions/v0.1.7.md) | NPX Optimization & Portable Registry | Stabilized |
+| **v0.1.0** | [The Foundation](./versions/v0.1.0.md) | Initial Sovereign Scaffolding | Legacy |
 
 ---
 
-## License
+## ⚖️ License
 
-FAIDD is released under the [Apache 2.0 License](./LICENSE).
+FAIDD is released under the **Apache 2.0 License**. Distributed for the elite, built for the autonomous age.
