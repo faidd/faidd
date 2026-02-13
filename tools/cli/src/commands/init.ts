@@ -26,12 +26,15 @@ export function registerInitCommand(program: Command, onboarding: OnboardingServ
     .description('Force re-initialization of the Sovereign Hierarchy')
     .action(async () => {
       displayBanner();
+      
+      const messages = await loadMessages();
+      console.log(extractSection(messages, 'START_MESSAGE'));
+      
       console.log(chalk.yellow('Forcing re-initialization...'));
       
       await onboarding.runJourney();
       await installer.run({ force: true });
       
-      const messages = await loadMessages();
       console.log('\n' + extractSection(messages, 'END_MESSAGE'));
     });
 }

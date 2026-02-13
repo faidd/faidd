@@ -16,12 +16,38 @@ export class OnboardingService {
   async runJourney(): Promise<void> {
     console.log(chalk.bold.blue('\nInitiating FAIDD setup...'));
     console.log(chalk.dim('Identify yourself to establish your perimeter.\n'));
+    
+    console.log(chalk.cyan(`? Installation directory: ${chalk.white(process.cwd())}`));
 
     const answers = await inquirer.prompt([
       {
+        type: 'confirm',
+        name: 'confirm',
+        message: 'Install to this directory?',
+        default: true,
+      },
+      {
+        type: 'checkbox',
+        name: 'tools',
+        message: 'Select tools to configure (Space to select, Enter to confirm):',
+        choices: [
+          { name: 'Cursor', checked: true },
+          { name: 'VS Code' },
+          { name: 'Claude Code' },
+          { name: 'Codex' },
+          { name: 'OpenCode' }
+        ],
+        validate: (answer) => {
+          if (answer.length < 1) {
+            return 'You must choose at least one tool.';
+          }
+          return true;
+        },
+      },
+      {
         type: 'input',
         name: 'architect',
-        message: 'Your name?',
+        message: 'What shall the agents call you?',
         default: process.env.USER || 'Architect',
       },
       {
@@ -31,22 +57,10 @@ export class OnboardingService {
         default: path.basename(process.cwd()),
       },
       {
-        type: 'list',
-        name: 'ide',
-        message: 'Primary IDE?',
-        choices: ['Cursor', 'VS Code', 'Claude Code', 'Codex', 'OpenCode', 'Other'],
-      },
-      {
         type: 'input',
         name: 'aiAssistant',
-        message: 'AI assistant?',
+        message: 'Preferred AI Assistant?',
         default: 'Claude',
-      },
-      {
-        type: 'confirm',
-        name: 'confirm',
-        message: 'Set up FAIDD in this directory?',
-        default: true,
       },
     ]);
 
@@ -55,11 +69,14 @@ export class OnboardingService {
       process.exit(0);
     }
 
+    // Map tools to Governance (taking the first selected as primary IDE for now)
+    const primaryIde = answers.tools[0] || 'Cursor';
+
     const governance: Governance = {
       projectName: answers.projectName,
       architect: answers.architect,
       environment: {
-        ide: answers.ide,
+        ide: primaryIde,
         aiAssistant: answers.aiAssistant,
       },
       security: {
@@ -76,5 +93,7 @@ export class OnboardingService {
     await this.govService.save(governance);
 
     console.log(chalk.bold.green('\n✅ FAIDD perimeter established.'));
+    console.log(chalk.dim(`Installed to: ${process.cwd()}`));
+    console.log(chalk.dim(`Modules: core, faidd-cli`));
   }
 }
