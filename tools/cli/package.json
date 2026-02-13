@@ -1,6 +1,6 @@
 {
   "name": "faidd",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "type": "module",
   "private": false,
   "description": "FAIDD Official CLI - The orchestration engine for AI-Driven Development",
@@ -11,18 +11,6 @@
     "type": "git",
     "url": "git+https://github.com/faidd/faidd.git"
   },
-  "bugs": {
-    "url": "https://github.com/faidd/faidd/issues"
-  },
-  "keywords": [
-    "faidd",
-    "cli",
-    "ai",
-    "agent",
-    "automation",
-    "bm-ad",
-    "framework"
-  ],
   "publishConfig": {
     "access": "public"
   },
@@ -37,7 +25,7 @@
     }
   },
   "scripts": {
-    "build": "tsc -b",
+    "build": "tsc -b && cp -r src/installers/templates dist/installers/ && cp src/installers/install-messages.md dist/installers/",
     "dev": "tsc -b --watch"
   },
   "files": [
@@ -50,14 +38,25 @@
   "dependencies": {
     "@faidd/logic": "workspace:*",
     "@faidd/types": "workspace:*",
-    "chalk": "^4.1.0",
+    "boxen": "^8.0.1",
+    "chalk": "^4.1.2",
     "commander": "^11.1.0",
+    "csv-parse": "^6.1.0",
+    "figlet": "^1.10.0",
     "fs-extra": "^11.2.0",
-    "inquirer": "^9.2.0"
+    "gradient-string": "^3.0.0",
+    "inquirer": "^9.3.8",
+    "listr2": "^10.1.0",
+    "ora": "^9.3.0",
+    "yaml": "^2.8.2",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@types/figlet": "^1.7.0",
     "@types/fs-extra": "^11.0.4",
-    "@types/inquirer": "^9.0.7",
-    "@types/node": "^20.0.0"
+    "@types/inquirer": "^9.0.9",
+    "@types/node": "^20.0.0",
+    "execa": "^9.0.0",
+    "vitest": "^2.1.0"
   }
 }
