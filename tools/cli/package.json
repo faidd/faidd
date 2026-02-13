@@ -1,6 +1,6 @@
 {
   "name": "faidd",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "type": "module",
   "private": false,
   "description": "FAIDD Official CLI - The orchestration engine for AI-Driven Development",
