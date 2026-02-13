@@ -1,54 +1,78 @@
+// scaffold.service.ts — creates the physical bunker + brain directory structure
 import fs from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
 
-/**
- * Scaffolding Service
- * Responsible for creating the physical Sovereign Hierarchy.
- */
 export class ScaffoldService {
-  private readonly bunkerPath = '_faidd';
-  private readonly brainPath = 'faidd';
-
-  async scaffold(projectDir: string): Promise<void> {
+  // create the full directory structure for a FAIDD installation
+  async scaffold(projectDir: string, bunkerName: string = '_faidd'): Promise<void> {
+    // the Bunker — system core, read-only target
     const bunkerFolders = [
-      'rules',
-      'agents',
-      'sessions',
-      'bin'
+      'core',
+      'core/agents',
+      'core/tasks',
+      'core/tools',
+      '_config',
+      '_memory',
     ];
 
+    // the Brain — operational workspace
     const brainFolders = [
       'ledger',
       'analysis',
       'planning',
-      'audit'
+      'audit',
     ];
 
-    console.log(chalk.dim('\nEstablishing Sovereign Perimeter...'));
+    console.log(chalk.dim('\nEstablishing directory structure...'));
 
-    // 1. Create the Bunker (_faidd) - READ-ONLY TARGET
     for (const folder of bunkerFolders) {
-      const fullPath = path.join(projectDir, this.bunkerPath, folder);
+      const fullPath = path.join(projectDir, bunkerName, folder);
       await fs.ensureDir(fullPath);
-      console.log(`${chalk.blue('◈')} ${chalk.dim('Bunker secured:')} ${this.bunkerPath}/${folder}`);
+      this.logCreated(`${bunkerName}/${folder}`);
     }
 
-    // 2. Create the Operational Brain (faidd)
     for (const folder of brainFolders) {
-      const fullPath = path.join(projectDir, this.brainPath, folder);
+      const fullPath = path.join(projectDir, 'faidd', folder);
       await fs.ensureDir(fullPath);
-      console.log(`${chalk.blue('◈')} ${chalk.dim('Brain initialized:')} ${this.brainPath}/${folder}`);
+      this.logCreated(`faidd/${folder}`);
     }
 
-    // 3. Create basic .gitignore entry
-    const gitignorePath = path.join(projectDir, '.gitignore');
-    if (await fs.pathExists(gitignorePath)) {
-      const content = await fs.readFile(gitignorePath, 'utf8');
-      if (!content.includes('_faidd/sessions')) {
-        await fs.appendFile(gitignorePath, '\n# FAIDD Sensitive Data\n_faidd/sessions/\n.faiddrc.json\n');
-        console.log(`${chalk.blue('◈')} ${chalk.dim('Guardrails added to .gitignore')}`);
-      }
+    // add faidd entries to .gitignore if it exists
+    await this.updateGitignore(projectDir, bunkerName);
+  }
+
+  // create module-specific subdirectory inside the bunker
+  async scaffoldModule(bunkerDir: string, moduleId: string): Promise<void> {
+    const moduleDirs = ['agents', 'tasks', 'tools', 'workflows'];
+    for (const dir of moduleDirs) {
+      await fs.ensureDir(path.join(bunkerDir, moduleId, dir));
     }
+  }
+
+  // -- private --
+
+  private async updateGitignore(projectDir: string, bunkerName: string) {
+    const gitignorePath = path.join(projectDir, '.gitignore');
+    if (!(await fs.pathExists(gitignorePath))) return;
+
+    const content = await fs.readFile(gitignorePath, 'utf8');
+    const marker = '# FAIDD';
+    if (content.includes(marker)) return;
+
+    const entries = [
+      '',
+      marker,
+      `${bunkerName}/_memory/`,
+      '.faiddrc.json',
+      '',
+    ].join('\n');
+
+    await fs.appendFile(gitignorePath, entries);
+    this.logCreated('.gitignore updated');
+  }
+
+  private logCreated(what: string) {
+    console.log(`${chalk.blue('◈')} ${chalk.dim(what)}`);
   }
 }
