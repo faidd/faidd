@@ -47,11 +47,16 @@ program
   .version('0.2.0');
 
 // Main Entry Point Logic (Default Action)
-program
-  .action(async () => {
-    displayBanner();
+// Main Entry Point Logic (Default Action)
+// If no command logic is matched, and user just runs 'faidd' (or 'npx faidd'), this triggers.
+const runDefault = async () => {
+    // If user ran a specific command like 'init' or 'install', this won't fire due to Commander logic 
+    // UNLESS we attach it to the root command properly.
+    // Commander's .action() on the root command works if no sub-command is matched.
     
+    // Check if we are already in a sovereign perimeter
     if (!(await govService.exists())) {
+        displayBanner();
         const messages = await loadMessages();
         console.log(extractSection(messages, 'START_MESSAGE'));
         
@@ -64,16 +69,22 @@ program
 
         console.log('\n' + extractSection(messages, 'END_MESSAGE'));
     } else {
+      // Existing project: show status or help
+      displayBanner();
       try {
         const gov = await govService.load();
         console.log(`FAIDD Active | Architect: ${gov.architect} | Perimeter: ${gov.projectName}\n`);
         displayStatus('ELITE-PREMIUM', 'VERIFIED');
+        console.log(chalk.dim('\nRun "faidd help" to see available commands.'));
       } catch (error) {
         console.error(chalk.red('FATAL GOVERNANCE ERROR:'), error instanceof Error ? error.message : String(error));
         process.exit(1);
       }
     }
-  });
+};
+
+program
+  .action(runDefault);
 
 // Register Commands
 registerInitCommand(program, onboardingService, installer);
