@@ -8,20 +8,24 @@ export class ScaffoldService {
   async scaffold(projectDir: string, bunkerName: string = '_faidd'): Promise<void> {
     // the Bunker — system core, read-only target
     const bunkerFolders = [
-      'core',
-      'core/agents',
-      'core/tasks',
-      'core/tools',
+      'rules',     // [NEW] Governance Rules
+      'sessions',  // [NEW] Session History
+      'rights',    // [NEW] Permissions Matrix
+      'agents',    // [NEW] AI Mindsets & Instructions
+      'bin',       // [NEW] Daemon Binaries (M1)
+      'resources', // [NEW] Static Assets & Templates
       '_config',
+      '_config/custom', // [NEW] User Overrides
       '_memory',
     ];
 
     // the Brain — operational workspace
     const brainFolders = [
-      'ledger',
-      'analysis',
-      'planning',
-      'audit',
+      'ledger',   // Mission logs (M4)
+      'analysis', // Deep strategic dives
+      'planning', // Feature plans
+      'audit',    // Integrity records
+      'logic',    // [NEW] Business logic
     ];
 
     console.log(chalk.dim('\nEstablishing directory structure...'));

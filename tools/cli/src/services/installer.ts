@@ -11,6 +11,7 @@ import { ConfigService } from './config.service.js';
 import { DependencyResolver } from './dependency-resolver.js';
 import { GeneratorService } from './generator.service.js';
 import { DiscoveryService } from './discovery.service.js';
+import { fileURLToPath } from 'url';
 
 export interface InstallOptions {
   force?: boolean;
@@ -33,7 +34,13 @@ export class InstallerService {
     private registry: ProviderRegistry,
     private projectRoot: string = process.cwd()
   ) {
-    this.modules = new ModuleService(this.projectRoot);
+    // Determine the CLI's own directory (source or dist)
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    // In production, we are in dist/services/. Source root is dist/ (one level up)
+    const cliRoot = path.join(__dirname, '..');
+    
+    this.modules = new ModuleService(cliRoot);
   }
 
   // Main entry point for "install" or "update"
@@ -54,7 +61,11 @@ export class InstallerService {
       const requestedModules = ['core', ...(options.modules || [])];
       spinner.text = 'Resolving dependencies...';
       const resolution = await this.resolver.resolve(requestedModules, async (id) => {
-        const meta = await this.modules.readModuleMeta(path.join(this.projectRoot, 'src', 'modules', id), id); // naive path
+        // Resolve path to the module within the CLI's own source/dist
+        const moduleSourcePath = await this.modules.findSource(id);
+        if (!moduleSourcePath) return [];
+
+        const meta = await this.modules.readModuleMeta(moduleSourcePath, id);
         return meta?.dependencies || [];
       });
 
